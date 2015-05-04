@@ -1,6 +1,6 @@
-package it.jugtofunprog
+package it.svjm
 
-import it.jugtofunprog.ner.InMemoryNamedEntityRepository
+import it.svjm.ner.InMemoryNamedEntityRepository
 import scala.collection.JavaConversions.asScalaIterable
 
 object Sandbox {
@@ -25,10 +25,10 @@ object Sandbox {
                                                   //|  testo, testo parla, testo parla di, parla, parla di, parla di enrico, di, d
                                                   //| i enrico, di enrico fermi, enrico, enrico fermi, fermi)
 
-  val neRepo = new InMemoryNamedEntityRepository  //> neRepo  : it.jugtofunprog.ner.InMemoryNamedEntityRepository = it.jugtofunpro
+  val neRepo = new InMemoryNamedEntityRepository  //> neRepo  : it.svjm.ner.InMemoryNamedEntityRepository = it.jugtofunpro
                                                   //| g.ner.InMemoryNamedEntityRepository@43b64611
   val entities = ngramTokens flatMap (t => asScalaIterable(neRepo.recognize(t)))
-                                                  //> entities  : List[it.jugtofunprog.ner.model.NamedEntity] = List(it.jugtofunpr
+                                                  //> entities  : List[it.svjm.ner.model.NamedEntity] = List(it.jugtofunpr
                                                   //| og.ner.model.NamedEntity@620a02d)
 
   entities map (e => e.getIri)                    //> res0: List[String] = List(https://it.wikipedia.org/wiki/Enrico_Fermi)

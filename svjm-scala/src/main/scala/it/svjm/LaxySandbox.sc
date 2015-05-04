@@ -1,4 +1,4 @@
-package it.jugtofunprog
+package it.svjm
 
 object LazySandbox {
   
