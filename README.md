@@ -1,2 +1,4 @@
-# scalaToMeetup
-Esercizi per il workshop "Scala vs Java" del "Torino Scala Programming &amp; Big Data Meetup" del 6 maggio 2015.
+svjmScala
+===============
+
+Questo progetto contiene l'implementazione delle varie interfacce (e le relative classi di test) in Scala.

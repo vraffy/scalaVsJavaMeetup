@@ -23,6 +23,7 @@ object Sugar {
 
 /** Scala version */
   
+  
   val n = 10                                      //> n  : Int = 10
   
   val pairs = for {

@@ -4,6 +4,7 @@ object LazySandbox {
   
   val myList = 1 to 10 toList                     //> myList  : List[Int] = List(1, 2, 3, 4, 5, 6, 7, 8, 9, 10)
   
+  
   val valFiltered = myList filter (elem => {println(elem); elem % 2 == 0})
                                                   //> 1
                                                   //| 2

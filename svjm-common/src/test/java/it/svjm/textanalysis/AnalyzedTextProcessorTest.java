@@ -1,10 +1,7 @@
 package it.svjm.textanalysis;
 
-import static org.hamcrest.Matchers.contains;
-import static org.hamcrest.Matchers.containsInAnyOrder;
-import static org.hamcrest.Matchers.equalTo;
-import static org.hamcrest.Matchers.is;
-import static org.junit.Assert.assertThat;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 import it.svjm.ner.model.NamedEntity.EntityType;
 import it.svjm.textanalysis.model.AnalyzedText;
 import it.svjm.textanalysis.model.Annotation;
@@ -13,7 +10,9 @@ import it.svjm.textanalysis.model.Mood;
 import it.svjm.textanalysis.model.Polarity;
 
 import java.util.Collection;
+import java.util.HashSet;
 import java.util.Map;
+import java.util.Set;
 
 import org.junit.Test;
 
@@ -35,7 +34,7 @@ public abstract class AnalyzedTextProcessorTest {
 
 		final Mood mood = processor.extractMood(analyzedText);
 
-		assertThat(mood, equalTo(Mood.NONE));
+		assertEquals(mood, Mood.NONE);
 	}
 
 	@Test
@@ -52,7 +51,7 @@ public abstract class AnalyzedTextProcessorTest {
 
 		final Mood mood = processor.extractMood(analyzedText);
 
-		assertThat(mood, equalTo(Mood.NONE));
+		assertEquals(mood, Mood.NONE);
 	}
 
 	@Test
@@ -67,7 +66,7 @@ public abstract class AnalyzedTextProcessorTest {
 
 		final Mood mood = processor.extractMood(analyzedText);
 
-		assertThat(mood, equalTo(Mood.NEGATIVE));
+		assertEquals(mood, Mood.NEGATIVE);
 	}
 
 	@Test
@@ -82,7 +81,7 @@ public abstract class AnalyzedTextProcessorTest {
 
 		final Mood mood = processor.extractMood(analyzedText);
 
-		assertThat(mood, equalTo(Mood.POSITIVE));
+		assertEquals(mood, Mood.POSITIVE);
 	}
 
 	@Test
@@ -99,7 +98,7 @@ public abstract class AnalyzedTextProcessorTest {
 
 		final Mood mood = processor.extractMood(analyzedText);
 
-		assertThat(mood, equalTo(Mood.POSITIVE));
+		assertEquals(mood, Mood.POSITIVE);
 	}
 
 	/** indexPersons */
@@ -113,7 +112,7 @@ public abstract class AnalyzedTextProcessorTest {
 		Map<Integer, Annotation> personIdx = processor
 				.indexPersons(analyzedText);
 
-		assertThat(personIdx.size(), is(0));
+		assertEquals(personIdx.size(), 0);
 	}
 
 	@Test
@@ -127,7 +126,7 @@ public abstract class AnalyzedTextProcessorTest {
 		Map<Integer, Annotation> personIdx = processor
 				.indexPersons(analyzedText);
 
-		assertThat(personIdx.size(), is(0));
+		assertEquals(personIdx.size(), 0);
 	}
 
 	@Test
@@ -149,10 +148,11 @@ public abstract class AnalyzedTextProcessorTest {
 		Map<Integer, Annotation> personIdx = processor
 				.indexPersons(analyzedText);
 
-		assertThat(personIdx.size(), is(3));
-		assertThat(personIdx.get(40).getId(), is(1));
-		assertThat(personIdx.get(76).getId(), is(3));
-		assertThat(personIdx.get(67).getId(), is(2));
+		assertEquals(personIdx.size(), 3);
+
+		assertEquals(personIdx.get(40).getId(), 1);
+		assertEquals(personIdx.get(76).getId(), 3);
+		assertEquals(personIdx.get(67).getId(), 2);
 	}
 
 	/** indexLocations */
@@ -166,7 +166,7 @@ public abstract class AnalyzedTextProcessorTest {
 		Map<Integer, Annotation> locationIdx = processor
 				.indexLocations(analyzedText);
 
-		assertThat(locationIdx.size(), is(0));
+		assertEquals(locationIdx.size(), 0);
 	}
 
 	@Test
@@ -180,7 +180,7 @@ public abstract class AnalyzedTextProcessorTest {
 		Map<Integer, Annotation> locationIdx = processor
 				.indexLocations(analyzedText);
 
-		assertThat(locationIdx.size(), is(0));
+		assertEquals(locationIdx.size(), 0);
 	}
 
 	@Test
@@ -202,9 +202,9 @@ public abstract class AnalyzedTextProcessorTest {
 		Map<Integer, Annotation> locationIdx = processor
 				.indexLocations(analyzedText);
 
-		assertThat(locationIdx.size(), is(2));
-		assertThat(locationIdx.get(35).getId(), is(0));
-		assertThat(locationIdx.get(126).getId(), is(4));
+		assertEquals(locationIdx.size(), 2);
+		assertEquals(locationIdx.get(35).getId(), 0);
+		assertEquals(locationIdx.get(126).getId(), 4);
 	}
 
 	/** indexShortEntities */
@@ -218,7 +218,7 @@ public abstract class AnalyzedTextProcessorTest {
 		Map<Integer, Annotation> shortEntititiesIdx = processor
 				.indexShortEntities(analyzedText, 10);
 
-		assertThat(shortEntititiesIdx.size(), is(0));
+		assertEquals(shortEntititiesIdx.size(), 0);
 	}
 
 	@Test
@@ -240,11 +240,11 @@ public abstract class AnalyzedTextProcessorTest {
 		Map<Integer, Annotation> shortEntititiesIdx = processor
 				.indexShortEntities(analyzedText, 10);
 
-		assertThat(shortEntititiesIdx.size(), is(4));
-		assertThat(shortEntititiesIdx.get(35).getId(), is(0));
-		assertThat(shortEntititiesIdx.get(126).getId(), is(4));
-		assertThat(shortEntititiesIdx.get(67).getId(), is(2));
-		assertThat(shortEntititiesIdx.get(76).getId(), is(3));
+		assertEquals(shortEntititiesIdx.size(), 4);
+		assertEquals(shortEntititiesIdx.get(35).getId(), 0);
+		assertEquals(shortEntititiesIdx.get(126).getId(), 4);
+		assertEquals(shortEntititiesIdx.get(67).getId(), 2);
+		assertEquals(shortEntititiesIdx.get(76).getId(), 3);
 	}
 
 	/** mostFrequentEntities */
@@ -258,7 +258,7 @@ public abstract class AnalyzedTextProcessorTest {
 		Collection<String> entities = processor
 				.mostFrequentEntities(analyzedText);
 
-		assertThat(entities.size(), is(0));
+		assertEquals(entities.size(), 0);
 	}
 
 	@Test
@@ -280,9 +280,9 @@ public abstract class AnalyzedTextProcessorTest {
 		Collection<String> entities = processor
 				.mostFrequentEntities(analyzedText);
 
-		assertThat(entities.size(), is(1));
-		assertThat(entities,
-				contains("https://it.wikipedia.org/wiki/Enrico_Fermi"));
+		assertEquals(entities.size(), 1);
+		assertEquals(entities.iterator().next(),
+				"https://it.wikipedia.org/wiki/Enrico_Fermi");
 	}
 
 	@Test
@@ -304,12 +304,12 @@ public abstract class AnalyzedTextProcessorTest {
 		Collection<String> entities = processor
 				.mostFrequentEntities(analyzedText);
 
-		assertThat(entities.size(), is(2));
-		assertThat(
-				entities,
-				containsInAnyOrder(
-						"https://it.wikipedia.org/wiki/Enrico_Fermi",
-						"https://it.wikipedia.org/wiki/Roma"));
+		assertEquals(entities.size(), 2);
+
+		Set<String> result = new HashSet<String>(entities);
+		assertTrue(result.contains("https://it.wikipedia.org/wiki/Roma"));
+		assertTrue(result
+				.contains("https://it.wikipedia.org/wiki/Enrico_Fermi"));
 	}
 
 	protected abstract AnalyzedTextProcessor getProcessor();
