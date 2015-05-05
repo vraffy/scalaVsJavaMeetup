@@ -24,38 +24,43 @@ public class Java8AnalyzedTextProcessor implements AnalyzedTextProcessor {
 
     @Override
     public Mood extractMood(final AnalyzedText analyzedText) {
-
-        return analyzedText.getAnnotations()
-                .stream()
-                .filter(a -> (a instanceof Polarity))
-                .map(a -> (Polarity) a)
-                .findFirst()
-                .map(Polarity::getMood)
-                .orElse(Mood.NONE);
+    	
+    	// your code here!
+    	
+        return null;
     }
 
     @Override
     public Map<Integer, Annotation> indexPersons(AnalyzedText analyzedText) {
-        return indexEntities(analyzedText, annotation -> (annotation instanceof Entity && ((Entity) annotation).getType().equals(PERSON)));
+    	
+    	// your code here!
+    	
+        return null;
     }
 
 
     @Override
     public Map<Integer, Annotation> indexLocations(AnalyzedText analyzedText) {
-        return indexEntities(analyzedText, annotation -> (annotation instanceof Entity && ((Entity) annotation).getType().equals(LOCATION)));
+    	
+    	// your code here!
+    	
+        return null;
     }
 
 
     @Override
     public Map<Integer, Annotation> indexShortEntities(AnalyzedText analyzedText, int maxLength) {
-        return indexEntities(analyzedText, annotation -> (annotation.getEnd() - annotation.getBegin() <= maxLength));
+    	
+    	// your code here!
+    	
+        return null;
     }
 
     private Map<Integer, Annotation> indexEntities(AnalyzedText analyzedText, Predicate<Annotation> predicate) {
-
-        Stream<Annotation> entities = analyzedText.getAnnotations().stream().filter(predicate);
-
-        return entities.collect(toMap(Annotation::getBegin, identity()));
+    	
+    	// your code here!
+    	
+        return null;
     }
 
 
