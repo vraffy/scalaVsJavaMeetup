@@ -5,9 +5,8 @@ import scala.collection.JavaConversions.iterableAsScalaIterable
 
 object Sandbox {
 
-  val scalaTokens = List("questo", "testo", "parla", "di", "enrico", "fermi", "a")
-                                                  //> scalaTokens  : List[String] = List(questo, testo, parla, di, enrico, fermi, 
-                                                  //| a)
+  val scalaTokens = List("questo", "testo", "parla", "di", "enrico", "fermi")
+                                                  //> scalaTokens  : List[String] = List(questo, testo, parla, di, enrico, fermi)
 
   val slidingIt = 1 to 3 map (scalaTokens sliding _)
                                                   //> slidingIt  : scala.collection.immutable.IndexedSeq[Iterator[List[String]]] =
@@ -20,18 +19,17 @@ object Sandbox {
                                                   //| questo, testo, parla), List(testo), List(testo, parla), List(testo, parla, d
                                                   //| i), List(parla), List(parla, di), List(parla, di, enrico), List(di), List(di
                                                   //| , enrico), List(di, enrico, fermi), List(enrico), List(enrico, fermi), List(
-                                                  //| enrico, fermi, a), List(fermi), List(fermi, a), List(a))
+                                                  //| fermi))
   val ngramTokens = ngrams map (n => n.mkString(" "))
                                                   //> ngramTokens  : List[String] = List(questo, questo testo, questo testo parla,
                                                   //|  testo, testo parla, testo parla di, parla, parla di, parla di enrico, di, d
-                                                  //| i enrico, di enrico fermi, enrico, enrico fermi, enrico fermi a, fermi, ferm
-                                                  //| i a, a)
+                                                  //| i enrico, di enrico fermi, enrico, enrico fermi, fermi)
 
   val neRepo = new InMemoryNamedEntityRepository  //> neRepo  : it.svjm.ner.InMemoryNamedEntityRepository = it.svjm.ner.InMemoryNa
-                                                  //| medEntityRepository@12843fce
+                                                  //| medEntityRepository@153f5a29
   val entities = ngramTokens flatMap (t => iterableAsScalaIterable(neRepo.recognize(t)))
                                                   //> entities  : List[it.svjm.ner.model.NamedEntity] = List(it.svjm.ner.model.Nam
-                                                  //| edEntity@402f32ff)
+                                                  //| edEntity@548b7f67)
 
   entities map (e => e.getIri)                    //> res0: List[String] = List(https://it.wikipedia.org/wiki/Enrico_Fermi)
   
